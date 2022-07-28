@@ -91,5 +91,42 @@ namespace EClerx.MVC.ConsumeAPI.Controllers
             }
             return View(department);
         }
+
+        [Route("Edit/{departmentCode?}")]
+        public async Task<ActionResult> Edit(string departmentCode)
+        {
+            if (string.IsNullOrWhiteSpace(departmentCode))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DepartmentViewModel department = null;
+
+            var result = await client.GetAsync("Departments/Get/" + departmentCode);
+            if (result.IsSuccessStatusCode)
+            {
+                department = await result.Content.ReadAsAsync<DepartmentViewModel>();
+            }
+            return View(department);
+        }
+
+        [HttpPost]
+        [Route("Edit")]
+        public async Task<ActionResult> Edit(DepartmentViewModel department)
+        {
+            var result = await client.PutAsJsonAsync<DepartmentViewModel>("Departments/UpdateDepartment/" + department.cDepartmentCode, department);
+
+            if (ModelState.IsValid)
+            {
+                if (result.StatusCode == HttpStatusCode.NoContent)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Internal Server Error. Please try later.");
+                }
+            }
+            return View(department);
+        }
     }
 }
