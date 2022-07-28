@@ -1,0 +1,50 @@
+﻿@model EClerx.MVC.ConsumeAPI.ViewModel.DepartmentViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DepartmentViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cDepartmentCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cDepartmentCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vDepartmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vDepartmentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vDepartmentHead)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vDepartmentHead)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vLocation)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<EClerx.MVC.ConsumeAPI.ViewModel.DepartmentViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-8 mb-3">
+        <h2>Display all Departments</h2>
+        @Html.ActionLink("Add New", "Create", "Departments", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+<hr />
+
+@*@{
+        Model.Add(new EClerx.MVC.ConsumeAPI.ViewModel.DepartmentViewModel
+        {
+            cDepartmentCode = "0002"
+        });
+    }*@
+
+<div class="row mt-3">
+    <div class="col-md-8">
+        <table class="table table-striped">
+            <tr>
+                <th>Department Code</th>
+                <th>Department Name</th>
+            </tr>
+            @foreach (var dep in Model)
+            {
+                <tr>
+                    <td> @Html.ActionLink(dep.cDepartmentCode, "Details", "Departments", new { departmentCode = dep.cDepartmentCode }, null) </td>
+                    <td>@dep.vDepartmentName</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
